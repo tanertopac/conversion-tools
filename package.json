@@ -1,0 +1,22 @@
+{
+  "name": "conversion-tools",
+  "version": "1.0.0",
+  "description": "Convert between strings with different encodings and Binary data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "convert",
+    "encoding",
+    "string",
+    "base64",
+    "hex",
+    "binary",
+    "representation",
+    "binarystring",
+    "tools"
+  ],
+  "author": "Taner Topaç <tanertopac@gmail.com>",
+  "license": "ISC"
+}
