@@ -1,6 +1,6 @@
 {
   "name": "conversion-tools",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Convert between strings with different encodings and Binary data",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,13 @@
     "tools"
   ],
   "author": "Taner Topaç <tanertopac@gmail.com>",
-  "license": "ISC"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanertopac/conversion-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanertopac/conversion-tools/issues"
+  },
+  "homepage": "https://github.com/tanertopac/conversion-tools#readme"
 }
