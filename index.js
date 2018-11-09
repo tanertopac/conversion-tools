@@ -1,7 +1,7 @@
 /**
  * @param {string} input String to check for binary.
  */
-function testBinary(input){
+function isBinary(input){
     for(let i=0;i<input.length;i++){
         if(input.charAt(i)!='0' && input.charAt(i)!='1'){
             return false;
@@ -12,23 +12,23 @@ function testBinary(input){
 
 exports.getHex = /**
 * 
-* @param {string} data 
-* @param {string} encoding
+* @param {string} dataString - String of certain encoding holding data
+* @param {string} encoding - Character encoding of dataString
 * @param {string} [separator] - An optional separator between bytes
 */
-function(data,encoding,separator=''){
-   let rBuf=Buffer.from(data,encoding);
+function(dataString,encoding,separator=''){
+   let rBuf=Buffer.from(dataString,encoding);
    return [...rBuf].map(val=>val.toString(16).length==2?val.toString(16):'0'+val.toString(16)).join(separator);
 };
 
 exports.getBinary =  /**
 * 
-* @param {string} data - Data to be converted.
+* @param {string} dataString - Data to be converted.
 * @param {string} encoding - Encoding of the input data.
 * @param {string} [separator] - Optional separator between bytes.
 */
-(data,encoding,separator='') => {
-   const buff=Buffer.from(data,encoding);
+(dataString,encoding,separator='') => {
+   const buff=Buffer.from(dataString,encoding);
    return [...buff].map(val=>{
      const el=val.toString(2);
      const padding=8-el.length;
@@ -37,16 +37,16 @@ exports.getBinary =  /**
 };
 
 exports.binaryToHex = /**
-* @param {string} binary A binary string with length multiple of 8.
+* @param {string} binaryString A string of O's and 1's with length multiple of 8.
 * @param {string} [separator] - An optional separator between bytes.
 */
-function(binary,separator=''){
-   if(binary.length%8!=0 || !testBinary(binary)){
-       throw 'Parameter is not Binary Data';
+function(binaryString,separator=''){
+   if(binaryString.length%8!=0 || !isBinary(binaryString)){
+       throw 'Parameter is not Binary String';
    }
    const ret=[];
-   for(let i=0;i<binary.length/8;i++){
-       let byte=binary.substr(i*8,8);
+   for(let i=0;i<binaryString.length/8;i++){
+       let byte=binaryString.substr(i*8,8);
        ret.push(parseInt(byte,2));
    }
    //Convert each array element(num: Number) to hex string
@@ -55,3 +55,13 @@ function(binary,separator=''){
       return n.length<2?'0'+n:n;//if single digit, complement the missing 0
   }).join(separator);//join to form single return string
 };
+
+exports.changeEncoding=
+/**
+ * @param {string} dataString - String data with known encoding to alter(input string)
+ * @param {string} inputEncoding - Character encoding of dataString(input)
+ * @param {string} outputEncoding - Character encoding of output
+ * @returns {string}
+*/function(dataString,inputEncoding,outputEncoding){
+    return Buffer.from(dataString,inputEncoding).toString(outputEncoding);
+}
